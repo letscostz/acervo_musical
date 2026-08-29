@@ -1,6 +1,7 @@
 package school.sptech.acervo_musical;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.util.List;
 
 @RestController
 @RequestMapping("/musicas")
@@ -47,6 +49,15 @@ public class MusicaController {
 
         return ResponseEntity.status(201).body(musicaCriada);
     }
+
+    // obter todas as músicas cadastradas
+    @GetMapping
+    public ResponseEntity<List<Musica>> listarMusicas() {
+        String sql = "SELECT * FROM musica";
+        List<Musica> musicas = jdbctemplate.query(sql, new BeanPropertyRowMapper<>(Musica.class));
+        return ResponseEntity.status(200).body(musicas);
+    }
+
 
 
 }

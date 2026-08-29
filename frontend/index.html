@@ -63,7 +63,7 @@
                 placeholder="3:45">
             
                 
-            <label for="album">Álbum</label>
+            <label>Álbum</label>
             <input 
                 type="text"
                 id="album"
@@ -150,41 +150,18 @@
             <h1>♫ Músicas cadastradas</h1>
             
 
-        <label for="buscar-musica">Buscar música</label>
+            <label>Buscar música</label>
 
-        <input
-            type="search"
-            id="buscar-musica"
-            name="buscar-musica"
-            placeholder="Buscar por título, artista, gênero, tag..."
-        >
+            <input
+                type="search"
+                id="buscar-musica"
+                name="buscar-musica"
+                placeholder="Buscar por título, artista, gênero, tag..."
+            >
            
-        <article>
-
-            <div>
-                ♪
+            <div id="lista-musicas">
+                // onde vão ficar as músicas cadastradas
             </div>
-
-            <div>
-
-                <h2>Evidências</h2>
-
-                <span>Sertanejo</span>
-
-                <p>Chitãozinho & Xororó</p>
-
-                <div>
-                    <span>♬ Estúdio</span>
-                    <span>▣ 1990</span>
-                    <span>◷ 4:21</span>
-                </div>
-
-                <span>♧ Evidências</span>
-
-            </div>
-
-        </article>
-        
         </div>
     </div>
 
@@ -216,7 +193,7 @@
             versao = "acustica";
         }
 
-        console.log(versao);
+        // console.log(versao);
 
         var explicita = document.getElementById("explicita").checked;
         var cover = document.getElementById("cover").checked;
@@ -247,7 +224,41 @@
 
     }
 
-    async function obterMusica() {
-        
+    async function obterMusicas() {
+        // await para esperar o backend responder antes de continuar
+        var resposta = await fetch("http://localhost:8080/musicas");
+        var musicas = await resposta.json(); 
+        console.log(musicas);
+
+        var listaMusicas = document.getElementById("lista-musicas");
+
+        for (var i = 0; i < musicas.length; i++) {
+            console.log(musicas[i].titulo);
+            listaMusicas.innerHTML += `
+                <div>
+                    ♪
+                </div>
+
+                <div>
+
+                    <h2>${musicas[i].titulo}</h2>
+
+                    <span>${musicas[i].genero}</span>
+
+                    <p>${musicas[i].artista}</p>
+
+                    <div>
+                        <span>♬ ${musicas[i].versao}</span>
+                        <span>▣ ${musicas[i].lancamento}</span>
+                        <span>◷ ${musicas[i].duracao}</span>
+                    </div>
+
+                    <span>♧ ${musicas[i].album}</span>
+
+                </div>
+            ` 
+        }
     }
+
+    obterMusicas();
 </script>
