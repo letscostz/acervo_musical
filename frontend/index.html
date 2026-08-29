@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acervo Musical</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" href="img/colcheia-rosa.png">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="titulo">
+        <div class="img">
+        <img src="img/colcheia-rosa.png" width="30" height="30">
+        </div>
+        <div class="texto-acervo">
+            <div class="acervo">ACERVO MUSICAL</div>
+            <div class="subtitulo">Cadastre e organize suas músicas favoritas</div>
+        </div>
+    </div>
+    <div class="conteudo">
+        <div class="bloco1">
+            <h3>+ Nova Música</h3>
+
+            <label>Título</label>
+            <input 
+                type="text" 
+                id="titulo" 
+                name="titulo"
+                placeholder="Ex: Sinais">
+
+            <label>Artista</label>
+            <input 
+                type="text" 
+                id="artista" 
+                name="artista"
+                placeholder="Ex: Luan Santana">
+
+            <label>Gênero</label>
+            <select id="genero" name="genero">
+                <option value="">Selecione um gênero...</option>
+                <option value="pop">Pop</option>
+                <option value="rock">Rock</option>
+                <option value="rap">Rap</option>
+                <option value="sertanejo">Sertanejo</option>
+            </select>
+
+            <label>Data de Lançamento</label>
+            <input 
+                type="date"
+                id="lancamento"
+                name="lancamento"
+                placeholder="2024"
+            >
+
+            <label>Duração</label>
+            <input 
+                type="text"
+                id="duracao"
+                name="duracao"
+                placeholder="3:45">
+            
+                
+            <label for="album">Álbum</label>
+            <input 
+                type="text"
+                id="album"
+                name="album"
+                placeholder="Ex: A Night at the Opera">
+
+            <legend>Versão</legend>
+
+            <label>
+                <input 
+                    type="radio"
+                    id="estudio"
+                    name="versao"
+                    value="estudio"
+                >
+                Estúdio
+            </label>
+
+            <label>
+                <input 
+                    type="radio"
+                    id="ao-vivo"
+                    name="versao"
+                    value="ao-vivo"
+                >
+                Ao vivo
+            </label>
+
+            <label>
+                <input 
+                    type="radio"
+                    id="acustica"
+                    name="versao"
+                    value="acustica"
+                >
+                Acústica
+            </label>
+
+            <legend>Características</legend>
+
+            <label>
+                <input 
+                    type="checkbox"
+                    id="explicita"
+                    name="caracteristicas"
+                    value="explicita"
+                >
+                Explícita
+            </label>
+
+            <label>
+                <input 
+                    type="checkbox"
+                    id="cover"
+                    name="caracteristicas"
+                    value="cover"
+                >
+                Cover
+            </label>
+
+            <label>
+                <input 
+                    type="checkbox"
+                    id="remix"
+                    name="caracteristicas"
+                    value="remix"
+                >
+                Remix
+            </label>
+
+            <label>
+                <input 
+                    type="checkbox"
+                    id="trilha_sonora"
+                    name="caracteristicas"
+                    value="trilha_sonora"
+                >
+                Trilha Sonora
+            </label>
+
+            <button onclick="cadastrar()">+ Cadastrar Música</button>
+        </div>
+        <div class="bloco2">
+            <h1>♫ Músicas cadastradas</h1>
+            
+
+        <label for="buscar-musica">Buscar música</label>
+
+        <input
+            type="search"
+            id="buscar-musica"
+            name="buscar-musica"
+            placeholder="Buscar por título, artista, gênero, tag..."
+        >
+           
+        <article>
+
+            <div>
+                ♪
+            </div>
+
+            <div>
+
+                <h2>Evidências</h2>
+
+                <span>Sertanejo</span>
+
+                <p>Chitãozinho & Xororó</p>
+
+                <div>
+                    <span>♬ Estúdio</span>
+                    <span>▣ 1990</span>
+                    <span>◷ 4:21</span>
+                </div>
+
+                <span>♧ Evidências</span>
+
+            </div>
+
+        </article>
+        
+        </div>
+    </div>
+
+</body>
+</html>
+<script>
+
+    function cadastrar() {
+        var titulo = document.getElementById("titulo").value;
+        var artista = document.getElementById("artista").value;
+        var genero = document.getElementById("genero").value;
+        var lancamento = document.getElementById("lancamento").value;
+        
+        var duracao = document.getElementById("duracao").value;
+        var tempo = duracao.split(":");
+        var minutos = Number(tempo[0]);
+        var segundos = Number(tempo[1]);
+        var duracaoEmSegundos = minutos * 60 + segundos;
+
+        // console.log(duracaoEmSegundos);
+        var album = document.getElementById("album").value;
+        var versao;
+
+        if (document.getElementById("estudio").checked) {
+            versao = "estudio";
+        } else if (document.getElementById("ao-vivo").checked) {
+            versao = "ao-vivo";
+        } else if (document.getElementById("acustica").checked) {
+            versao = "acustica";
+        }
+
+        console.log(versao);
+
+        var explicita = document.getElementById("explicita").checked;
+        var cover = document.getElementById("cover").checked;
+        var remix = document.getElementById("remix").checked;
+        var trilha = document.getElementById("trilha_sonora").checked;
+
+        var musica = {
+        titulo: titulo,
+        artista: artista,
+        genero: genero,
+        lancamento: lancamento,
+        duracao: duracaoEmSegundos,
+        album: album,
+        versao: versao,
+        explicita: explicita,
+        cover: cover,
+        remix: remix,
+        trilha: trilha
+        };
+
+        fetch("http://localhost:8080/musicas", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(musica)
+        });
+
+    }
+
+    async function obterMusica() {
+        
+    }
+</script>
