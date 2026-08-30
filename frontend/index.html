@@ -193,11 +193,11 @@
         var versao;
 
         if (document.getElementById("estudio").checked) {
-            versao = "estudio";
+            versao = "|Estúdio";
         } else if (document.getElementById("ao-vivo").checked) {
-            versao = "ao-vivo";
+            versao = "Ao vivo";
         } else if (document.getElementById("acustica").checked) {
-            versao = "acustica";
+            versao = "Acústica";
         }
 
         // console.log(versao);
@@ -233,8 +233,6 @@
             obterMusicas();
         });
 
-        obterMusicas()
-
     }
 
     async function obterMusicas() {
@@ -247,7 +245,7 @@
         listaMusicas.innerHTML = "";
 
         for (var i = 0; i < musicas.length; i++) {
-            console.log(musicas[i].titulo);
+            
             var duracaoEmSegundos = musicas[i].duracao;
             var minutos = Math.floor(duracaoEmSegundos / 60);
             var segundos = duracaoEmSegundos - (minutos * 60);
@@ -255,6 +253,24 @@
                 segundos = "0" + segundos;
             }
             var duracao = minutos + ":" + segundos;
+            var caracteristicas = "";
+
+            if (musicas[i].explicita) {
+                caracteristicas += "<span>Explícita</span>";
+            }
+
+            if (musicas[i].cover) {
+                caracteristicas += "<span>Cover</span>";
+            }
+
+            if (musicas[i].remix) {
+                caracteristicas += "<span>Remix</span>";
+            }
+
+            if (musicas[i].trilha) {
+                caracteristicas += "<span>Trilha Sonora</span>";
+            }
+
             listaMusicas.innerHTML += `
                 <div>
                     ♪
@@ -272,9 +288,10 @@
                         <span>♬ ${musicas[i].versao}</span>
                         <span>▣ ${musicas[i].lancamento}</span>
                         <span>◷ ${duracao}</span>
+                        <span>♧ ${musicas[i].album}</span>
                     </div>
 
-                    <span>♧ ${musicas[i].album}</span>
+                    <div> ${caracteristicas} </div>
 
                 </div>
             ` 

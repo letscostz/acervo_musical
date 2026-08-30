@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS musica (
     duracao INT NOT NULL,
     album VARCHAR(100) NOT NULL,
     versao VARCHAR(100) NOT NULL,
-    CONSTRAINT chk_versao CHECK (versao IN ('estudio', 'ao-vivo', 'acustica')),
+    CONSTRAINT chk_versao CHECK (versao IN ('Estúdio', 'Ao vivo', 'Acústica')),
     explicita BOOLEAN NOT NULL,
     cover BOOLEAN NOT NULL,
     remix BOOLEAN NOT NULL,

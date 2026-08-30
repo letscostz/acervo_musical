@@ -53,4 +53,6 @@ body {
     border: 2px solid;
     border-radius: 10px;
     border-color: #F01E8C;
+    /* height: 600px; */
+    overflow-y: auto;
 }
