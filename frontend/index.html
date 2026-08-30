@@ -41,10 +41,18 @@
             <label>Gênero</label>
             <select id="genero" name="genero">
                 <option value="">Selecione um gênero...</option>
-                <option value="pop">Pop</option>
-                <option value="rock">Rock</option>
-                <option value="rap">Rap</option>
-                <option value="sertanejo">Sertanejo</option>
+                <option value="Pop">Pop</option>
+                <option value="Rock">Rock</option>
+                <option value="Rap">Rap</option>
+                <option value="Sertanejo">Sertanejo</option>
+                <option value="Hip-Hop">Hip-Hop</option>
+                <option value="Pagode">Pagode</option>
+                <option value="Funk">Funk</option>
+                <option value="Jazz">Jazz</option>
+                <option value="Eletrônica">Eletrônica</option>
+                <option value="MPB">MPB</option>
+                <option value="Clássica">Clássica</option>
+                <option value="Outros">Outros</option>
             </select>
 
             <label>Data de Lançamento</label>
@@ -160,7 +168,6 @@
             >
            
             <div id="lista-musicas">
-                // onde vão ficar as músicas cadastradas
             </div>
         </div>
     </div>
@@ -220,7 +227,13 @@
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(musica)
+        })
+        .then(response => response.json())
+        .then(data => {
+            obterMusicas();
         });
+
+        obterMusicas()
 
     }
 
@@ -231,9 +244,17 @@
         console.log(musicas);
 
         var listaMusicas = document.getElementById("lista-musicas");
+        listaMusicas.innerHTML = "";
 
         for (var i = 0; i < musicas.length; i++) {
             console.log(musicas[i].titulo);
+            var duracaoEmSegundos = musicas[i].duracao;
+            var minutos = Math.floor(duracaoEmSegundos / 60);
+            var segundos = duracaoEmSegundos - (minutos * 60);
+            if (segundos < 10) {
+                segundos = "0" + segundos;
+            }
+            var duracao = minutos + ":" + segundos;
             listaMusicas.innerHTML += `
                 <div>
                     ♪
@@ -250,7 +271,7 @@
                     <div>
                         <span>♬ ${musicas[i].versao}</span>
                         <span>▣ ${musicas[i].lancamento}</span>
-                        <span>◷ ${musicas[i].duracao}</span>
+                        <span>◷ ${duracao}</span>
                     </div>
 
                     <span>♧ ${musicas[i].album}</span>
