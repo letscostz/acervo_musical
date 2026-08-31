@@ -40,19 +40,9 @@
 
             <label>Gênero</label>
             <select id="genero" name="genero">
-                <option value="">Selecione um gênero...</option>
-                <option value="Pop">Pop</option>
-                <option value="Rock">Rock</option>
-                <option value="Rap">Rap</option>
-                <option value="Sertanejo">Sertanejo</option>
-                <option value="Hip-Hop">Hip-Hop</option>
-                <option value="Pagode">Pagode</option>
-                <option value="Funk">Funk</option>
-                <option value="Jazz">Jazz</option>
-                <option value="Eletrônica">Eletrônica</option>
-                <option value="MPB">MPB</option>
-                <option value="Clássica">Clássica</option>
-                <option value="Outros">Outros</option>
+                <option value="#" disabled selected>
+                    Selecione um gênero...
+                </option>
             </select>
 
             <label>Data de Lançamento</label>
@@ -180,6 +170,7 @@
         var titulo = document.getElementById("titulo").value;
         var artista = document.getElementById("artista").value;
         var genero = document.getElementById("genero").value;
+        var fkGenero = Number(genero);
         var lancamento = document.getElementById("lancamento").value;
         
         var duracao = document.getElementById("duracao").value;
@@ -193,7 +184,7 @@
         var versao;
 
         if (document.getElementById("estudio").checked) {
-            versao = "|Estúdio";
+            versao = "Estúdio";
         } else if (document.getElementById("ao-vivo").checked) {
             versao = "Ao vivo";
         } else if (document.getElementById("acustica").checked) {
@@ -210,7 +201,7 @@
         var musica = {
         titulo: titulo,
         artista: artista,
-        genero: genero,
+        fkGenero: fkGenero,
         lancamento: lancamento,
         duracao: duracaoEmSegundos,
         album: album,
@@ -298,5 +289,23 @@
         }
     }
 
+    async function obterGeneros() {
+        var resposta = await fetch("http://localhost:8080/musicas/generos");
+        var generos = await resposta.json();
+        console.log(generos);
+
+        var selectGenero = document.getElementById("genero");
+        for (var i = 0; i < generos.length; i++) {
+            selectGenero.innerHTML += `
+                <option value="${generos[i].id}">
+                    ${generos[i].nome}
+                </option>
+            `;
+        }
+    }
+
+    
     obterMusicas();
+    obterGeneros();
+    
 </script>

@@ -6,7 +6,7 @@ public class Musica {
     private Integer id;
     private String titulo;
     private String artista;
-    private String genero;
+    private Integer fkGenero;;
     private LocalDate lancamento;
     private Integer duracao;
     private String album;
@@ -15,16 +15,17 @@ public class Musica {
     private Boolean cover;
     private Boolean remix;
     private Boolean trilha;
+    private String genero;
 
     public Musica() {
     }
 
-    public Musica(Integer id, String titulo, String artista, String genero, LocalDate lancamento, Integer duracao,
-                  String album, String versao, Boolean explicita, Boolean cover, Boolean remix, Boolean trilha) {
+    public Musica(Integer id, String titulo, String artista, Integer fkGenero, LocalDate lancamento, Integer duracao,
+                  String album, String versao, Boolean explicita, Boolean cover, Boolean remix, Boolean trilha, String genero) {
         this.id = id;
         this.titulo = titulo;
         this.artista = artista;
-        this.genero = genero;
+        this.fkGenero = fkGenero;
         this.lancamento = lancamento;
         this.duracao = duracao;
         this.album = album;
@@ -33,6 +34,7 @@ public class Musica {
         this.cover = cover;
         this.remix = remix;
         this.trilha = trilha;
+        this.genero = genero;
     }
 
     public Integer getId() {
@@ -59,13 +61,9 @@ public class Musica {
         this.artista = artista;
     }
 
-    public String getGenero() {
-        return genero;
-    }
+    public Integer getFkGenero() { return fkGenero; }
 
-    public void setGenero(String genero) {
-        this.genero = genero;
-    }
+    public void setFkGenero(Integer fkGenero) { this.fkGenero = fkGenero; }
 
     public LocalDate getLancamento() {
         return lancamento;
@@ -130,4 +128,8 @@ public class Musica {
     public void setTrilha(Boolean trilha) {
         this.trilha = trilha;
     }
+
+    public String getGenero() { return genero; }
+
+    public void setGenero(String genero) { this.genero = genero; }
 }

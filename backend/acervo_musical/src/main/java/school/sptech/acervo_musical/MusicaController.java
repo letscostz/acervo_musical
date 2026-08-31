@@ -24,14 +24,14 @@ public class MusicaController {
     // inserir musica
     @PostMapping
     public ResponseEntity<Musica> criar(@RequestBody Musica musicaCriada) {
-        String sql = "INSERT INTO musica (titulo, artista, genero, lancamento, duracao, album, versao, explicita, cover," +
+        String sql = "INSERT INTO musica (titulo, artista, fk_genero, lancamento, duracao, album, versao, explicita, cover," +
                 " remix, trilha) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbctemplate.update( con -> {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, musicaCriada.getTitulo());
             ps.setString(2, musicaCriada.getArtista());
-            ps.setString(3, musicaCriada.getGenero());
+            ps.setInt(3, musicaCriada.getFkGenero());;
             ps.setDate(4, java.sql.Date.valueOf(musicaCriada.getLancamento()));
             ps.setInt(5, musicaCriada.getDuracao());
             ps.setString(6, musicaCriada.getAlbum());
@@ -40,7 +40,6 @@ public class MusicaController {
             ps.setBoolean(9, musicaCriada.getCover());
             ps.setBoolean(10, musicaCriada.getRemix());
             ps.setBoolean(11, musicaCriada.getTrilha());
-
             return ps;
         }, keyHolder);
 
@@ -53,11 +52,17 @@ public class MusicaController {
     // obter todas as músicas cadastradas
     @GetMapping
     public ResponseEntity<List<Musica>> listarMusicas() {
-        String sql = "SELECT * FROM musica";
+        String sql = "SELECT musica.*, genero.nome AS genero FROM musica JOIN genero ON musica.fk_genero = genero.id";
         List<Musica> musicas = jdbctemplate.query(sql, new BeanPropertyRowMapper<>(Musica.class));
         return ResponseEntity.status(200).body(musicas);
     }
 
-
+    // obter generos
+    @GetMapping("/generos")
+    public ResponseEntity<List<Genero>> listarGeneros() {
+        String sql = "SELECT * FROM genero";
+        List<Genero> generos = jdbctemplate.query(sql, new BeanPropertyRowMapper<>(Genero.class));
+        return ResponseEntity.status(200).body(generos);
+    }
 
 }
