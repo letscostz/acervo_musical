@@ -17,7 +17,7 @@
         </div>
         <div class="texto-acervo">
             <div class="acervo">ACERVO MUSICAL</div>
-            <div class="subtitulo">Cadastre e organize suas músicas favoritas</div>
+            <div class="subtitulo">Cadastre e organize suas músicas favoritas!</div>
         </div>
     </div>
     <div class="conteudo">
@@ -50,7 +50,7 @@
                 type="date"
                 id="lancamento"
                 name="lancamento"
-                placeholder="2024"
+                min="1990-01-01"
             >
 
             <label>Duração</label>
@@ -167,19 +167,14 @@
 <script>
 
     function cadastrar() {
+        
         var titulo = document.getElementById("titulo").value;
         var artista = document.getElementById("artista").value;
         var genero = document.getElementById("genero").value;
         var fkGenero = Number(genero);
         var lancamento = document.getElementById("lancamento").value;
-        
         var duracao = document.getElementById("duracao").value;
         var tempo = duracao.split(":");
-        var minutos = Number(tempo[0]);
-        var segundos = Number(tempo[1]);
-        var duracaoEmSegundos = minutos * 60 + segundos;
-
-        // console.log(duracaoEmSegundos);
         var album = document.getElementById("album").value;
         var versao;
 
@@ -191,38 +186,63 @@
             versao = "Acústica";
         }
 
-        // console.log(versao);
-
         var explicita = document.getElementById("explicita").checked;
         var cover = document.getElementById("cover").checked;
         var remix = document.getElementById("remix").checked;
         var trilha = document.getElementById("trilha_sonora").checked;
 
-        var musica = {
-        titulo: titulo,
-        artista: artista,
-        fkGenero: fkGenero,
-        lancamento: lancamento,
-        duracao: duracaoEmSegundos,
-        album: album,
-        versao: versao,
-        explicita: explicita,
-        cover: cover,
-        remix: remix,
-        trilha: trilha
-        };
+        var agora = new Date();
+        var dia = String(agora.getDate()).padStart(2, '0');
+        var mes = String(agora.getMonth() + 1).padStart(2, '0');
+        var ano = agora.getFullYear();
+        var dataHoje = `${ano}-${mes}-${dia}`;
+        var dataMinima = "1990-01-01";
 
-        fetch("http://localhost:8080/musicas", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(musica)
-        })
-        .then(response => response.json())
-        .then(data => {
-            obterMusicas();
-        });
+        var minutos = Number(tempo[0]);
+        var segundos = Number(tempo[1]);
+        var duracaoEmSegundos = minutos * 60 + segundos;
+
+        if (titulo == "" || artista == "" || album == "" || genero == "#" || versao == undefined) { 
+            alert("Preencha todos os campos corretamente!");
+
+        } else if (duracao == NaN || duracao == "" || tempo.length != 2 || isNaN(tempo[0]) || isNaN(tempo[1]) || tempo[0] < 0 
+                    || tempo[0] > 19 || tempo[1] < 0 || tempo[1] > 59 || tempo[0] == "" || tempo[1] == "" || duracaoEmSegundos <= 0) { 
+            alert("Duração inválida :( \nA duração da música deve ser maior que 0 segundos e menor do que 20 minutos e deve seguir o padrão 'mm:ss'!")
+            
+        } else if (lancamento == "" || lancamento > dataHoje || lancamento < dataMinima) {
+            alert("Data de lançamento inválida :(")
+
+        } else {
+
+            var musica = {
+            titulo: titulo,
+            artista: artista,
+            fkGenero: fkGenero,
+            lancamento: lancamento,
+            duracao: duracaoEmSegundos,
+            album: album,
+            versao: versao,
+            explicita: explicita,
+            cover: cover,
+            remix: remix,
+            trilha: trilha
+            };
+
+            console.log(musica);
+
+            fetch("http://localhost:8080/musicas", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(musica)
+            })
+            .then(response => response.json())
+            .then(data => {
+                obterMusicas();
+            });
+
+        }
 
     }
 
