@@ -13,7 +13,7 @@
 <body>
     <div class="titulo">
         <div class="img">
-        <img src="img/colcheia-rosa.png" width="30" height="30">
+        <img src="img/musica.png" width="30" height="30">
         </div>
         <div class="texto-acervo">
             <div class="acervo">ACERVO MUSICAL</div>
@@ -24,7 +24,8 @@
         <div class="bloco1">
             <h3>+ Nova Música</h3>
 
-            <label>Título</label>
+            <div>
+                <label>Título</label>
             <input 
                 type="text" 
                 id="titulo" 
@@ -37,8 +38,10 @@
                 id="artista" 
                 name="artista"
                 placeholder="Ex: Luan Santana">
+            </div>
 
-            <label>Gênero</label>
+            <div>
+                <label>Gênero</label>
             <select id="genero" name="genero">
                 <option value="#" disabled selected>
                     Selecione um gênero...
@@ -52,8 +55,10 @@
                 name="lancamento"
                 min="1990-01-01"
             >
+            </div>
 
-            <label>Duração</label>
+            <div>
+                <label>Duração</label>
             <input 
                 type="text"
                 id="duracao"
@@ -66,11 +71,12 @@
                 type="text"
                 id="album"
                 name="album"
-                placeholder="Ex: A Night at the Opera">
+                placeholder="Ex: O Nosso Tempo é Agora">
+            </div>
 
             <legend>Versão</legend>
 
-            <label>
+            <div><label>
                 <input 
                     type="radio"
                     id="estudio"
@@ -98,11 +104,11 @@
                     value="acustica"
                 >
                 Acústica
-            </label>
+            </label></div>
 
             <legend>Características</legend>
 
-            <label>
+            <div><label>
                 <input 
                     type="checkbox"
                     id="explicita"
@@ -120,9 +126,10 @@
                     value="cover"
                 >
                 Cover
-            </label>
+            </label></div>
 
-            <label>
+            <div>
+                <label>
                 <input 
                     type="checkbox"
                     id="remix"
@@ -141,6 +148,7 @@
                 >
                 Trilha Sonora
             </label>
+            </div>
 
             <button onclick="cadastrar()">+ Cadastrar Música</button>
         </div>
@@ -148,14 +156,14 @@
             <h1>♫ Músicas cadastradas</h1>
             
 
-            <label>Buscar música</label>
+            <!-- <label>Buscar música</label>
 
             <input
                 type="search"
                 id="buscar-musica"
                 name="buscar-musica"
                 placeholder="Buscar por título, artista, gênero, tag..."
-            >
+            > -->
            
             <div id="lista-musicas">
             </div>
@@ -266,6 +274,13 @@
             var duracao = minutos + ":" + segundos;
             var caracteristicas = "";
 
+            var lancamento = musicas[i].lancamento;
+            var data = lancamento.split("-");
+            var ano = data[0];
+            var mes = data[1];
+            var dia = data[2];
+            var novaData = dia + "-" + mes + "-" + ano;
+
             if (musicas[i].explicita) {
                 caracteristicas += "<span>Explícita</span>";
             }
@@ -297,7 +312,7 @@
 
                     <div>
                         <span>♬ ${musicas[i].versao}</span>
-                        <span>▣ ${musicas[i].lancamento}</span>
+                        <span>▣ ${novaData}</span>
                         <span>◷ ${duracao}</span>
                         <span>♧ ${musicas[i].album}</span>
                     </div>
