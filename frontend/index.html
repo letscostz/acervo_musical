@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="icon" href="img/colcheia-rosa.png">
+    <link rel="icon" href="img/musica.png">
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -22,152 +22,181 @@
     </div>
     <div class="conteudo">
         <div class="bloco1">
-            <h3>+ Nova Música</h3>
 
-            <div>
+        <h3>+ Nova Música</h3>
+
+        <div class="linha-campos">
+
+            <div class="campo">
                 <label>Título</label>
-            <input 
-                type="text" 
-                id="titulo" 
-                name="titulo"
-                placeholder="Ex: Sinais">
-
-            <label>Artista</label>
-            <input 
-                type="text" 
-                id="artista" 
-                name="artista"
-                placeholder="Ex: Luan Santana">
-            </div>
-
-            <div>
-                <label>Gênero</label>
-            <select id="genero" name="genero">
-                <option value="#" disabled selected>
-                    Selecione um gênero...
-                </option>
-            </select>
-
-            <label>Data de Lançamento</label>
-            <input 
-                type="date"
-                id="lancamento"
-                name="lancamento"
-                min="1990-01-01"
-            >
-            </div>
-
-            <div>
-                <label>Duração</label>
-            <input 
-                type="text"
-                id="duracao"
-                name="duracao"
-                placeholder="3:45">
-            
-                
-            <label>Álbum</label>
-            <input 
-                type="text"
-                id="album"
-                name="album"
-                placeholder="Ex: O Nosso Tempo é Agora">
-            </div>
-
-            <legend>Versão</legend>
-
-            <div><label>
                 <input 
-                    type="radio"
-                    id="estudio"
-                    name="versao"
-                    value="estudio"
-                >
+                    type="text" 
+                    id="titulo" 
+                    name="titulo" 
+                    placeholder="Ex: Sinais">
+            </div>
+
+            <div class="campo">
+                <label>Artista</label>
+                <input 
+                    type="text" 
+                    id="artista" 
+                    name="artista" 
+                    placeholder="Ex: Luan Santana">
+            </div>
+
+        </div>
+
+
+        <div class="linha-campos">
+
+            <div class="campo">
+                <label>Gênero</label>
+
+                <select id="genero" name="genero">
+                    <option value="#" disabled selected>
+                        Selecione um gênero...
+                    </option>
+                </select>
+            </div>
+
+            <div class="campo">
+                <label>Data de Lançamento</label>
+
+                <input 
+                    type="date" 
+                    id="lancamento" 
+                    name="lancamento" 
+                    min="1990-01-01">
+            </div>
+
+        </div>
+
+
+        <div class="linha-campos">
+
+            <div class="campo">
+                <label>Duração</label>
+
+                <input 
+                    type="text" 
+                    id="duracao" 
+                    name="duracao" 
+                    placeholder="3:45">
+            </div>
+
+            <div class="campo">
+                <label>Álbum</label>
+
+                <input 
+                    type="text" 
+                    id="album" 
+                    name="album" 
+                    placeholder="Ex: O Nosso Tempo é Agora">
+            </div>
+
+        </div>
+
+
+        <legend>Versão</legend>
+
+        <div class="opcoes">
+
+            <label>
+                <input 
+                    type="radio" 
+                    id="estudio" 
+                    name="versao" 
+                    value="estudio">
                 Estúdio
             </label>
 
             <label>
                 <input 
-                    type="radio"
-                    id="ao-vivo"
-                    name="versao"
-                    value="ao-vivo"
-                >
+                    type="radio" 
+                    id="ao-vivo" 
+                    name="versao" 
+                    value="ao-vivo">
                 Ao vivo
             </label>
 
             <label>
                 <input 
-                    type="radio"
-                    id="acustica"
-                    name="versao"
-                    value="acustica"
-                >
+                    type="radio" 
+                    id="acustica" 
+                    name="versao" 
+                    value="acustica">
                 Acústica
-            </label></div>
+            </label>
 
-            <legend>Características</legend>
+        </div>
 
-            <div><label>
+
+        <legend>Características</legend>
+
+        <div class="opcoes">
+
+            <label>
                 <input 
-                    type="checkbox"
-                    id="explicita"
-                    name="caracteristicas"
-                    value="explicita"
-                >
+                    type="checkbox" 
+                    id="explicita" 
+                    name="caracteristicas" 
+                    value="explicita">
                 Explícita
             </label>
 
             <label>
                 <input 
-                    type="checkbox"
-                    id="cover"
-                    name="caracteristicas"
-                    value="cover"
-                >
+                    type="checkbox" 
+                    id="cover" 
+                    name="caracteristicas" 
+                    value="cover">
                 Cover
-            </label></div>
+            </label>
 
-            <div>
-                <label>
+            <label>
                 <input 
-                    type="checkbox"
-                    id="remix"
-                    name="caracteristicas"
-                    value="remix"
-                >
+                    type="checkbox" 
+                    id="remix" 
+                    name="caracteristicas" 
+                    value="remix">
                 Remix
             </label>
 
             <label>
                 <input 
-                    type="checkbox"
-                    id="trilha_sonora"
-                    name="caracteristicas"
-                    value="trilha_sonora"
-                >
+                    type="checkbox" 
+                    id="trilha_sonora" 
+                    name="caracteristicas" 
+                    value="trilha_sonora">
                 Trilha Sonora
             </label>
-            </div>
 
-            <button onclick="cadastrar()">+ Cadastrar Música</button>
         </div>
+
+
+        <button onclick="cadastrar()">+ Cadastrar Música</button>
+
+        </div>
+
         <div class="bloco2">
             <h1>♫ Músicas cadastradas</h1>
-            
-
-            <!-- <label>Buscar música</label>
-
-            <input
-                type="search"
-                id="buscar-musica"
-                name="buscar-musica"
-                placeholder="Buscar por título, artista, gênero, tag..."
-            > -->
            
             <div id="lista-musicas">
+                <div class="nenhuma-musica">
+
+                    <div class="icone-vazio">
+                        <img src="img/disco.png" alt="disco">
+                    </div>
+
+                    <h2>Nenhuma música cadastrada</h2>
+
+                    <p>Preencha o formulário para começar.</p>
+
+                </div>
             </div>
         </div>
+
     </div>
 
 </body>
@@ -263,65 +292,94 @@
         var listaMusicas = document.getElementById("lista-musicas");
         listaMusicas.innerHTML = "";
 
-        for (var i = 0; i < musicas.length; i++) {
-            
-            var duracaoEmSegundos = musicas[i].duracao;
-            var minutos = Math.floor(duracaoEmSegundos / 60);
-            var segundos = duracaoEmSegundos - (minutos * 60);
-            if (segundos < 10) {
-                segundos = "0" + segundos;
-            }
-            var duracao = minutos + ":" + segundos;
-            var caracteristicas = "";
+        if (musicas.length == 0) {
 
-            var lancamento = musicas[i].lancamento;
-            var data = lancamento.split("-");
-            var ano = data[0];
-            var mes = data[1];
-            var dia = data[2];
-            var novaData = dia + "-" + mes + "-" + ano;
+            listaMusicas.innerHTML = `
+                <div class="nenhuma-musica">
 
-            if (musicas[i].explicita) {
-                caracteristicas += "<span>Explícita</span>";
-            }
-
-            if (musicas[i].cover) {
-                caracteristicas += "<span>Cover</span>";
-            }
-
-            if (musicas[i].remix) {
-                caracteristicas += "<span>Remix</span>";
-            }
-
-            if (musicas[i].trilha) {
-                caracteristicas += "<span>Trilha Sonora</span>";
-            }
-
-            listaMusicas.innerHTML += `
-                <div>
-                    ♪
-                </div>
-
-                <div>
-
-                    <h2>${musicas[i].titulo}</h2>
-
-                    <span>${musicas[i].genero}</span>
-
-                    <p>${musicas[i].artista}</p>
-
-                    <div>
-                        <span>♬ ${musicas[i].versao}</span>
-                        <span>▣ ${novaData}</span>
-                        <span>◷ ${duracao}</span>
-                        <span>♧ ${musicas[i].album}</span>
+                    <div class="icone-vazio">
+                        <img src="img/disco.png" alt="disco">
                     </div>
 
-                    <div> ${caracteristicas} </div>
+                    <h2>Nenhuma música cadastrada</h2>
+
+                    <p>Preencha o formulário para começar.</p>
 
                 </div>
-            ` 
+            `;
+
+        } else {
+
+            for (var i = 0; i < musicas.length; i++) {
+            
+                var duracaoEmSegundos = musicas[i].duracao;
+                var minutos = Math.floor(duracaoEmSegundos / 60);
+                var segundos = duracaoEmSegundos - (minutos * 60);
+
+                if (segundos < 10) {
+                    segundos = "0" + segundos;
+                }
+                 
+                var duracao = minutos + ":" + segundos;
+                var caracteristicas = "";
+
+                var lancamento = musicas[i].lancamento;
+                var data = lancamento.split("-");
+                var ano = data[0];
+                var mes = data[1];
+                var dia = data[2];
+                var novaData = dia + "-" + mes + "-" + ano;
+
+                if (musicas[i].explicita) {
+                    caracteristicas += "<span>Explícita</span>";
+                }
+
+                if (musicas[i].cover) {
+                    caracteristicas += "<span>Cover</span>";
+                }
+
+                if (musicas[i].remix) {
+                    caracteristicas += "<span>Remix</span>";
+                }
+
+                if (musicas[i].trilha) {
+                    caracteristicas += "<span>Trilha Sonora</span>";
+                }
+
+                listaMusicas.innerHTML += `
+                    <div class="musica-card">
+
+                        <div class="icone-musica">
+                            ♪
+                        </div>
+
+                        <div class="info-musica">
+
+                            <div class="titulo-genero">
+                                <h2>${musicas[i].titulo}</h2>
+                                <span class="genero-musica">${musicas[i].genero}</span>
+                            </div>
+
+                            <p class="artista-musica">${musicas[i].artista}</p>
+
+                            <div class="detalhes-musica">
+                                <span><img src="img/transmissao.png" alt="transmissao"> ${musicas[i].versao}</span>
+                                <span><img src="img/calendario.png" alt="calendario"> ${novaData}</span>
+                                <span><img src="img/relogio.png" alt="relogio"> ${duracao}</span>
+                                <span><img src="img/disco.png" alt="disco"> ${musicas[i].album}</span>
+                            </div>
+
+                            <div class="caracteristicas-musica">
+                                ${caracteristicas}
+                            </div>
+
+                        </div>
+
+                    </div>
+                `; 
+            }
         }
+        
     }
 
     async function obterGeneros() {
