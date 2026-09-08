@@ -310,7 +310,7 @@
 
         } else {
 
-            for (var i = 0; i < musicas.length; i++) {
+            for (var i = musicas.length - 1; i > 0; i--) {
             
                 var duracaoEmSegundos = musicas[i].duracao;
                 var minutos = Math.floor(duracaoEmSegundos / 60);

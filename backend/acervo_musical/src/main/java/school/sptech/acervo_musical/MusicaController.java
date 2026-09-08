@@ -23,7 +23,7 @@ public class MusicaController {
 
     // inserir musica
     @PostMapping
-    public ResponseEntity<Musica> criar(@RequestBody Musica musicaCriada) {
+    public ResponseEntity<Musica> cadastrarMusicas(@RequestBody Musica musicaCriada) {
         String sql = "INSERT INTO musica (titulo, artista, fk_genero, lancamento, duracao, album, versao, explicita, cover," +
                 " remix, trilha) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
