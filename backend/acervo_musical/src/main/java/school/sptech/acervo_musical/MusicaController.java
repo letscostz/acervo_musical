@@ -24,6 +24,20 @@ public class MusicaController {
     // inserir musica
     @PostMapping
     public ResponseEntity<Musica> cadastrarMusicas(@RequestBody Musica musicaCriada) {
+        String sqlVerificar = "SELECT COUNT(*) FROM musica WHERE titulo = ? AND artista = ? AND versao = ?";
+
+        Integer quantidade = jdbctemplate.queryForObject(
+                sqlVerificar,
+                Integer.class,
+                musicaCriada.getTitulo(),
+                musicaCriada.getArtista(),
+                musicaCriada.getVersao()
+        );
+
+        if (quantidade > 0) {
+            return ResponseEntity.status(409).build();
+        }
+
         String sql = "INSERT INTO musica (titulo, artista, fk_genero, lancamento, duracao, album, versao, explicita, cover," +
                 " remix, trilha) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
